@@ -1,0 +1,80 @@
+/*
+    Note: It is best to use a less version of this file ( see http://css2less.cc
+    For the media queries use @screen-sm-min instead of 768px.
+    For .omb_spanOr use @body-bg instead of white.
+*/
+
+.container-login {-webkit-box-shadow: 5px 5px 8px #c1c1c1; -moz-box-shadow: 5px 5px 8px #c1c1c1; box-shadow: 5px 5px 8px #c1c1c1; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; border-radius: 5px; margin-right: auto; margin-left: auto; margin-bottom: 20px; padding: 0; width: 275px;}
+.container-login img {width: 100%;}
+input {background: #f6f6f6!important; box-shadow: inset 0px 1px 0px #cecece!important;}
+input.btn {background-color: #656565!important; box-shadow: 0px 3px 2px #333!important; border: 0; color: #fff!important; font-weight: bold; right: -58%; position: relative;}
+.input-group-addon {box-shadow: inset 0px 1px 0px #cecece;}
+.omb_login {background:#fff; border: 1px solid #cdcdcd; border-radius: 0 0 5px 5px; -webkit-border-radius: 0 0 5px 5px; -moz-border-radius: 0 0 5px 5px; padding-bottom: 20px;  width: 275px;}
+.omb_login .omb_authTitle {border-bottom: 1px solid #cdcdcd; color: #aaa; font-size: 16px; line-height: 2; margin-bottom: 20px; margin-top: 0; text-align: center; padding: 20px 0; padding-bottom: 15px;}
+.ico-error {background:url('../images/icons/login/ico-validation.png') no-repeat center center; display: inline-block; height:23px; position: relative; width:23px;}
+img.logo {width: 100%;}
+	
+.omb_login .omb_socialButtons a {
+	color: white; // In yourUse @body-bg 
+	opacity:0.9;
+}
+.omb_login .omb_socialButtons a:hover {
+    color: white;
+	opacity:1;    	
+}
+.omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998;}
+.omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
+.omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
+
+
+.omb_login .omb_loginOr {
+	position: relative;
+	font-size: 1.5em;
+	color: #aaa;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+.omb_login .omb_loginOr .omb_hrOr {
+	background-color: #cdcdcd;
+	height: 1px;
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+}
+.omb_login .omb_loginOr .omb_spanOr {
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: -0.6em;
+	margin-left: -1.5em;
+	background-color: white;
+	width: 3em;
+	text-align: center;
+}	
+.form-group {padding: 0 35px;}
+.omb_login .omb_loginForm .input-group.i {
+	width: 2em;
+}
+.omb_login .omb_loginForm  .help-block {
+    color: #f00;
+}
+.help-block, span.help-block  {color: #f00!important; padding: 0 35px;}
+
+/*IMAGENES LOGIN*/
+.ico-key {background:url('../images/icons/login/ico-key.png') no-repeat center center; display: inline-block; height:23px; position: relative; width:23px;}
+.ico-user {background:url('../images/icons/login/ico-user.png') no-repeat center center; display: inline-block; height:23px; position: relative; width:23px;}
+.ico-candado {background:url('../images/icons/login/ico-candado.png') no-repeat center center; display: inline-block; height:23px; position: relative; width:23px;}
+.input-group-addon {padding: 3px 6px!important;}
+
+@media (min-width: 768px) {
+    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+}
+@media (min-width: 768px) {
+    .omb_login .omb_forgotPwd {
+        text-align: right;
+		margin-top:10px;
+ 	}		
+}

@@ -1,0 +1,287 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="TransAmets2.SiteMaster" %>
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9;IE=11;IE=edge" />
+    <title>:: AMETS :: Operador de Transportes</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    
+    <link href="css/Site.css" rel="stylesheet">
+    
+     <!--fonts-->
+    <!--<link href="css/font-awesome.min.css" rel="stylesheet" />-->
+
+    <!--page specific styles -->
+    <link href="css/master.menu.css" rel="stylesheet" />
+    <!--[if gte IE 9]>
+     <link href="css/i9_btn_fix.css" rel="stylesheet" type="text/css"  />
+    <![endif]-->
+    <script defer src="./Scripts/fontawesome-all.js"></script>
+
+    <asp:ContentPlaceHolder ID="cphHeader" runat="server">
+
+    </asp:ContentPlaceHolder>
+    <script>
+        $(document).ready(function () {
+            
+        });
+        function CloseWindow() {
+            //window.close();
+            window.open('javascript:window.open("", "_self", "");window.close();', '_self');
+        }
+    </script>
+    <style>
+        #CapaProgress
+        {
+            position:fixed;
+            top:0px;
+            bottom:0px;
+            left:0px;
+            right:0px;
+            overflow:hidden;
+            padding:0;
+            margin:0;
+	        background-color:#F0F0F0;
+	        filter:alpha(opacity=80); 
+	        opacity:0.8;
+            z-index:100000;
+        }
+        #Progress {
+            position:fixed;
+            top:40%;
+            left:40%;
+            /*height:20%;
+            width:20%;*/
+            z-index:100001;
+            background-color:#FFFFFF;
+            border: 1px solid Gray;
+            /*background-image: url('../../images/procesando.gif');*/
+            background-repeat:no-repeat;
+            background-position: center;
+            text-align:center;
+            vertical-align:middle;
+        }
+
+        .ui-datepicker { z-index:999 !important; }
+        .ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year { color: #333; }
+        
+        .container_botonera
+        {
+            position:fixed;
+            bottom:0;
+            text-align: center;
+            width: 100%;
+            background-color: rgba(40,40,40,0.5);
+            padding: 10px;
+        }
+        .navbar{
+            min-height: 0px !important; 
+            margin-bottom: 0px !important; 
+        }
+        .navbar-center{
+           position: absolute;
+           /*width: 100%;*/
+           /*left: 0;*/
+           text-align: center;
+           /*margin: auto;*/
+           margin-top:15px;
+           /*margin-left:350px;*/
+        }
+        .menu-site {
+            position:fixed;
+            top:0px;
+            left:0px;
+            width:100%;
+        }
+    </style>
+</head>
+<body style="margin-top:55px;">
+    <script type="text/javascript">
+        var RootURL = "<%=RootURL%>";
+    </script>
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server" EnablePageMethods="true" EnablePartialRendering="true" EnableViewState="true" AsyncPostBackTimeout="999999" >
+            
+        </asp:ScriptManager>
+        
+        <!--Nav -->
+        <div class="menu-site" style="z-index:10">
+            <nav class="navbar navbar-default navbar-static-top navbar-default-custom" id="navbar-top">
+                <div class="top-wrapper" id="divTopHeader" runat="server">
+        
+                    <div class="navbar-header">
+                        <a href="#" class="slidebar-toggle dropdown-toggle text-center" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" role="button">
+                            <span class="sr-only">Toggle sidebar</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li class="dropdown">
+                                <div class="dropdown">
+                                    <div data-toggle="dropdown"><i class="fa fa-home fa-2x text-center"></i><div>Inicio</div></div>
+                                    <ul class="dropdown-menu myFakeClass">
+                                        <li><a href="#" id="menuHomeLink">Página de Inicio</a></li>
+                                        <li><a href="#" id="menuNewWindow">Ventana nueva</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="dropdown">
+                                <div class="dropdown">
+                                    <div data-toggle="dropdown"><i class="fa fa-truck fa-2x"></i><div>Portes</div></div>
+                                    <ul class="dropdown-menu myFakeClass">
+                                        <li><a href="#" id="menuMtoPortes">Listado de Portes</a></li>
+                                        <li><a href="#" id="menuPorteNuevo">Nuevo Porte</a></li>
+                                        <li><a href="#" id="menuListPreportes">Preportes esta pestaña</a></li>
+                                        <li><a href="#" id="menuListPreportesNew">Preportes nueva pestaña</a></li>
+                                        <li><a href="#" id="menuPreporteNew">Nuevo Preporte</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="dropdown">
+                                <div class="dropdown">
+                                    <div data-toggle="dropdown"><i class="fa fa-cogs fa-2x"></i><div>Mantenimientos</div></div>
+                                    <ul class="dropdown-menu myFakeClass">
+                                        <li><a href="#" id="menuMtoClientes">Mantenimiento Clientes</a></li>
+                                        <li><a href="#" id="menuMtoTransportistas">Mantenimiento Transportistas</a></li>
+                                        <li><a href="#" id="menuMovimientosClientes">Movimientos clientes</a></li>
+                                        <li><a href="#" id="menuMovimientosTransportistas">Movimientos Transportistas</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="dropdown">
+                                <div class="dropdown">
+                                    <div data-toggle="dropdown"><i class="far fa-file-alt fa-2x"></i><div>Facturas</div></div>
+                                    <ul class="dropdown-menu myFakeClass">
+                                        <li><a href="#" id="menuListadoFacturas">Listado de Facturas</a></li>
+                                        <li><a href="#" id="menuGeneracionFacturas">Nueva Factura</a></li>
+                                        <!--<li><a href="#" id="menuGeneracionFacturasOld">Nueva FacturaOld</a></li>
+                                        <li><a href="#" id="menuGeneracionFacturas2">Nueva Factura2</a></li>
+                                        <li><a href="#" id="menuGeneracionFacturasX">Nueva Factura X</a></li>-->
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <div class="dropdown">
+                                    <div data-toggle="dropdown"><i class="far fa-handshake fa-2x"></i><div>Pagos</div></div>
+                                    <ul class="dropdown-menu myFakeClass">
+                                        <li><a href="#" id="menuListadoPagos">Listado de Pagos</a></li>
+                                        <li><a href="#" id="menuMtoPagos">Nuevo Pago</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <div class="dropdown">
+                                    <div data-toggle="dropdown"><i class="fas fa-euro-sign fa-2x"></i><div>Precios</div></div>
+                                    <ul class="dropdown-menu myFakeClass">
+                                        <li><a href="#" id="menuListadoPrecios">Listado de Precios</a></li>
+                                        <li><a href="#" id="menuMtoPrecios">Nuevo Precio</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="dropdown">
+                                <div class="dropdown">
+                                    <div data-toggle="dropdown"><i class="fa fa-cog fa-2x"></i><div>Configuración</div></div>
+                                    <ul class="dropdown-menu myFakeClass">
+                                        <li><a href="#"  id="menuGestionUsers">Gestión de Usuarios</a></li>
+                                        <li><a href="#"  id="menuConfiguracionApli">Configuración aplicación</a></li>   
+                                        <li><a href="#"  id="menuPrepararBBDDMysql">Preparar bbdd MySql</a></li>                             
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+            
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                
+                    <div class="navbar-collapse collapse">
+                        <div class="container-fluid100">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li class="hidden-xs">
+                                    <div style="background-color:White; opacity:1; border:1px solid Gray; width:140px; margin:0px; padding:0px;text-shadow: 2px 2px 4px #ffffff;margin-left:30px;padding-top: 10px;display:none;">
+                                        <img src="<%=ResolveUrl("~/images/amets_trans.png")%>" class="img-responsive" alt="" width="140" style="" />
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <ul class="nav navbar-nav navbar-center text-center" style=" margin-left:250px;">
+                                <li>
+                                    <span style="font-family:robotoregular; font-size:24px; color: #efecec; vertical-align: middle;"><label>AMETS - Operador de Transportes</label></span>
+                                </li>
+                            </ul>
+
+                            <ul class="nav navbar-nav navbar-right text-center">
+                                <li class="topUserInfo">
+                                    <span style="text-wrap:none;"></span><%--datetime span--%>
+                                    <span><br /><b><i aria-hidden="true" class="fa fa-user"></i> <%=hdnUserName.Value%></b></span>
+                                </li>
+                                <!--Log out-->
+                                <li class="dropdown logoff">
+                                    <asp:LinkButton ID="btnLogoff" runat="server" OnClick="btnLogOut_ServerClick" ForeColor="White"><i aria-hidden="true" class="fa fa-power-off fa-2x"></i></asp:LinkButton>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </nav>
+        </div>
+        <!--End Nav -->
+
+        <div class="container body-content">
+            <!-- MAIN CONTAINER -->
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <!-- MAIN CONTAINER -->
+            <hr />
+            
+            <!--footer scripts-->
+            <asp:ContentPlaceHolder ID="cpFooter" runat="server">
+	        </asp:ContentPlaceHolder>
+            <!--end footer scripts-->
+        </div>
+
+        <asp:HiddenField ID="hdnUserName" runat="server" Value="Nombre usuario logado" />    
+
+        <asp:ContentPlaceHolder ID="cphScripts" runat="server">
+		  
+	    </asp:ContentPlaceHolder>
+
+        <asp:UpdatePanel ID="UpdateProgress1" runat="server">
+        <ContentTemplate>
+            <div id="CapaProgress"></div>
+            <div id="Progress">
+                <table style="width: 250px; height:70px;">
+                <tr style="height:50%;">
+                    <td><h6><p style="text-align:center"><b>Procesando... <br /></b>
+                        <h6></h6>
+                        <h6></h6>
+                        <h6></h6>
+                        <h6></h6>
+                        </h6></td>
+                </tr>
+                <tr style="height:50%;">
+                    <td><img src="<%=ResolveUrl("~/images/procesando.gif")%>" /></td>
+                </tr>
+                </table>
+            </div>    
+        </ContentTemplate>
+        </asp:UpdatePanel>
+    </form>
+</body>
+</html>

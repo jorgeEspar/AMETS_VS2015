@@ -1,0 +1,9 @@
+.btn.disabled:before,
+.btn.disabled:after{
+     cursor: default;
+     background-image: none;
+     opacity: 0.65;
+     filter: alpha(opacity=65);
+     -moz-box-shadow: none;
+     box-shadow: none;
+   }
